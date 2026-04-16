@@ -14,7 +14,7 @@ This repository currently contains the very first shell of the application:
 
 ## Why I am making this app
 
-Many keep-awake tools are either too noisy, too technical... or too visually dated.
+Many keep-awake tools are either too noisy, too technical, too visually dated... and mainly because I want to :)
 
 KeepPCAwakeApp aims to be:
 - simple
