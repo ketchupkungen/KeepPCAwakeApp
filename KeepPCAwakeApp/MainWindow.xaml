@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="KeepPCAwakeApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KeepPCAwakeApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="KeepPCAwakeApp">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <!-- Main layout wrapper -->
+    <Grid Padding="20">
+
+        <!--
+            Small content area.
+            Fixed width makes spacing easier to tune without the UI drifting around.
+        -->
+        <Grid
+            Width="240"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Title -->
+            <TextBlock
+                Grid.Row="0"
+                Text="Keep PC Awake"
+                FontSize="18"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Left" />
+
+            <!--
+                Left aligned so it starts at the same X position as the text.
+                Empty On/Off content keeps the switch size stable.
+            -->
+            <ToggleSwitch
+                Grid.Row="2"
+                x:Name="KeepAwakeToggle"
+                Width="90"
+                HorizontalAlignment="Left"
+                OffContent=""
+                OnContent=""
+                Toggled="KeepAwakeToggle_Toggled" />
+
+            <!-- Status text lines up with the title and toggle -->
+            <TextBlock
+                Grid.Row="4"
+                x:Name="StatusText"
+                Text="Feeling sleepy. Might fall asleep"
+                HorizontalAlignment="Left"
+                TextWrapping="Wrap" />
+        </Grid>
+    </Grid>
+</Window>

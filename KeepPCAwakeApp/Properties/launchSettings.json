@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "KeepPCAwakeApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "KeepPCAwakeApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
