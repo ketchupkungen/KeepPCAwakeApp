@@ -7,33 +7,29 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="KeepPCAwakeApp">
+    Title="Keep PC Awake">
 
     <Window.SystemBackdrop>
         <MicaBackdrop />
     </Window.SystemBackdrop>
 
-    <!-- Main layout wrapper -->
     <Grid Padding="20">
-
-        <!--
-            Small content area.
-            Fixed width makes spacing easier to tune without the UI drifting around.
-        -->
         <Grid
-            Width="240"
+            Width="500"
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="12" />
+                <RowDefinition Height="6" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="8" />
+                <RowDefinition Height="14" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <!-- Title -->
+            <!-- App title -->
             <TextBlock
                 Grid.Row="0"
                 Text="Keep PC Awake"
@@ -41,22 +37,59 @@
                 FontWeight="SemiBold"
                 HorizontalAlignment="Left" />
 
-            <!--
-                Left aligned so it starts at the same X position as the text.
-                Empty On/Off content keeps the switch size stable.
-            -->
-            <ToggleSwitch
-                Grid.Row="2"
-                x:Name="KeepAwakeToggle"
-                Width="90"
-                HorizontalAlignment="Left"
-                OffContent=""
-                OnContent=""
-                Toggled="KeepAwakeToggle_Toggled" />
-
-            <!-- Status text lines up with the title and toggle -->
+            <!-- Small explanation -->
             <TextBlock
-                Grid.Row="4"
+                Grid.Row="2"
+                Text="Prevents your PC from sleeping until you turn it off, or until the optional timer runs out."
+                TextWrapping="Wrap"
+                Opacity="0.8"
+                FontSize="12"
+                HorizontalAlignment="Left" />
+
+            <!-- Main controls -->
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="16" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="16" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Main awake toggle -->
+                <ToggleSwitch
+                    Grid.Column="0"
+                    x:Name="KeepAwakeToggle"
+                    Width="90"
+                    OffContent=""
+                    OnContent=""
+                    HorizontalAlignment="Left"
+                    Toggled="KeepAwakeToggle_Toggled" />
+
+                <!-- Enables the optional timer -->
+                <CheckBox
+                    Grid.Column="2"
+                    x:Name="AutoOffCheckBox"
+                    Content="Auto off"
+                    IsChecked="False"
+                    VerticalAlignment="Center" />
+
+                <!-- Minutes until auto-off -->
+                <NumberBox
+                    Grid.Column="4"
+                    x:Name="MinutesNumberBox"
+                    Value="30"
+                    Minimum="1"
+                    Maximum="1440"
+                    SmallChange="1"
+                    MinWidth="180"
+                    HorizontalAlignment="Stretch"
+                    SpinButtonPlacementMode="Hidden" />
+            </Grid>
+
+            <!-- Current state -->
+            <TextBlock
+                Grid.Row="6"
                 x:Name="StatusText"
                 Text="Feeling sleepy. Might fall asleep"
                 HorizontalAlignment="Left"
